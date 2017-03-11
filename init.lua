@@ -60,10 +60,14 @@ function redrawBorder()
         global_border = hs.drawing.rectangle(hs.geometry.rect(top_left['x'], top_left['y'], size['w'], size['h']))
         global_border:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=0.8})
         global_border:setFill(false)
-        global_border:setStrokeWidth(3)
+        global_border:setStrokeWidth(8)
         global_border:show()
+
+        border_timer = hs.timer.doAfter(1, function() global_border:delete() end)
     end
 end
+
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, ".", function() redrawBorder() end)
 
 redrawBorder()
 
